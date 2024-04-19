@@ -6,7 +6,9 @@ import Home from "./site/home";
 function App() {
   return (
     <Router>
-      <Nav />
+      <header>
+        <Nav />
+      </header>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
