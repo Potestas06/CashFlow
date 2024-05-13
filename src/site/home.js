@@ -4,9 +4,14 @@ function Home() {
   return (
     <div className="container">
       <section>
-        <hgroup>
-          <h1>Get inspired with Cashflow</h1>
-          <p>Welcome to Cashflow a Simpel budget manager</p>
+        <hgroup style={{ textAlign: "center" }}>
+          <div className="container">
+            <img
+              alt="ilustration"
+              src={process.env.PUBLIC_URL + "/img/logo_dark.jpg"}
+              className="max-width-100"
+            ></img>
+          </div>
         </hgroup>
       </section>
       <br />
