@@ -2,29 +2,30 @@ import React from "react";
 
 function Foot() {
   return (
-    <div>
-      <div role="group">
-        {window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches ? (
-          <a href="/">
-            <img
-              src={process.env.PUBLIC_URL + "/img/logo_dark.jpg"}
-              alt="Cashflow"
-              className="logo"
-              style={{ width: "15%", height: "auto" }}
-            />
-          </a>
-        ) : (
-          <a href="/">
-            <img
-              src={process.env.PUBLIC_URL + "/img/logo_light.jpg"}
-              alt="Cashflow"
-              className="logo"
-            />
-          </a>
-        )}
+    <footer className="container">
+      <div
+        role="group"
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <a href="/" style={{ marginRight: "1rem" }}>
+          <img
+            src={
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? process.env.PUBLIC_URL + "/img/logo_dark.jpg"
+                : process.env.PUBLIC_URL + "/img/logo_light.jpg"
+            }
+            alt="Cashflow"
+            className="logo"
+            style={{ width: "15%", height: "auto" }}
+          />
+        </a>
+        <p>© {new Date().getFullYear()} Cashflow</p>
       </div>
-    </div>
+    </footer>
   );
 }
 
