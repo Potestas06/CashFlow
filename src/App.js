@@ -3,6 +3,8 @@ import NotFound from "./site/NotFound";
 import Nav from "./Component/nav";
 import Home from "./site/home";
 import Foot from "./Component/fooooooot";
+import Login from "./site/login";
+import Register from "./site/register";
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
