@@ -7,16 +7,17 @@
 ## Tagesordnungspunkte:
 
 1. **Patrick:**
-   - Arbeit an der Home Page fortgesetzt.
+   - Grundlegende Arbeiten an der Home Page abgeschlossen.
+   - Beginn der Arbeiten am Login-System.
 
 2. **Ian:**
    - Suche nach einer geeigneten Bibliothek zur Visualisierung von Daten.
    - Einarbeitung in die ausgewählte Bibliothek.
 
 ## Zusammenfassung:
-- Patrick hat seine Aufgaben im Bereich der Entwicklung der Home Page weitergeführt.
+- Patrick hat die grundlegende Entwicklung der Home Page abgeschlossen und beginnt nun mit der Implementierung des Login-Systems.
 - Ian hat sich darauf konzentriert, eine passende Bibliothek für die Datenvisualisierung zu finden und sich in deren Nutzung einzuarbeiten.
 
 ## Nächste Schritte:
-- **Patrick:** Weiterhin Fortschritte bei der Home Page erzielen.
+- **Patrick:** Implementierung des Login-Systems.
 - **Ian:** Vertiefung des Wissens über die gewählte Visualisierungsbibliothek und erste Implementierungsversuche.
