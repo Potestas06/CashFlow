@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 function Nav() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    auth.signOut();
+    alert("Logout successful!");
+    navigate("/Login");
+  };
+
   return (
     <div className="container">
       <nav>
@@ -29,10 +38,26 @@ function Nav() {
         </ul>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/Manage">Manage</Link>
           </li>
           <li>
-            <Link to="/Login">Login</Link>
+            <details className="dropdown">
+              <summary>Account</summary>
+              <ul dir="rtl">
+                {auth.currentUser ? (
+                  <li>
+                    <button onClick={logout}>Logout</button>
+                  </li>
+                ) : (
+                  <li>
+                    <Link to="/Login">Login</Link>
+                  </li>
+                )}
+                <li>
+                  <a href="/404">Profile</a>
+                </li>
+              </ul>
+            </details>
           </li>
         </ul>
       </nav>

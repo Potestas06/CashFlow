@@ -5,6 +5,7 @@ import Home from "./site/home";
 import Foot from "./Component/fooooooot";
 import Login from "./site/login";
 import Register from "./site/register";
+import Manage from "./site/manag";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/manage" element={<Manage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
