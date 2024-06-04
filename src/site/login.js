@@ -95,13 +95,6 @@ const Login = () => {
       />
       <dialog id="successfulLogin">
         <article>
-          <a
-            href="#close"
-            aria-label="Close"
-            className="close"
-            data-target="successfulLogin"
-            onClick={toggleModal}
-          ></a>
           <h5>Login successful!</h5>
           <p>You are now logged in.</p>
           <button
