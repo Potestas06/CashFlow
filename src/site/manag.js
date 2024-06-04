@@ -8,7 +8,8 @@ const Manage = () => {
   const navigate = useNavigate();
   const [userDatas, setUserDatas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isRegular, setIsRegular] = useState(true); // Default to true
+  const [isRegular, setIsRegular] = useState(false);
+  const [isExpense, setIsExpense] = useState(true);
   const [types, setTypes] = useState([]);
   const [newType, setNewType] = useState("");
 
@@ -116,7 +117,13 @@ const Manage = () => {
             <input type="text" id="title" required />
 
             <label>
-              <input type="checkbox" id="isExpense" /> Is Expense
+              <input
+                type="checkbox"
+                id="isExpense"
+                checked={isExpense}
+                onChange={(e) => setIsExpense(e.target.checked)}
+              />{" "}
+              Is Expense
             </label>
 
             <label htmlFor="amount">Amount</label>
@@ -153,7 +160,7 @@ const Manage = () => {
               }}
             >
               <option value="Undefined" disabled>
-                Choce the type
+                Choose the type
               </option>
               {types.map((type, index) => (
                 <option key={index} value={type}>
@@ -192,8 +199,8 @@ const Manage = () => {
 
                   addNewTransaction(amount, title, payDay, isExpense, type);
                   document.getElementById("transactionForm").reset();
-                  setIsRegular(true); // Reset the regular transaction state
-                  setNewType(""); // Reset the new type state
+                  setIsRegular(true);
+                  setNewType("");
                   toggleModal({
                     currentTarget: {
                       getAttribute: () => "addTransactionModal",
