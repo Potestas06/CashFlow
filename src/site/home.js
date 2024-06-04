@@ -1,4 +1,5 @@
 import React from "react";
+import { auth, db } from "../firebase";
 import "../styling/home.css";
 
 function Home() {

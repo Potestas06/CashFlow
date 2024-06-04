@@ -46,7 +46,9 @@ function Nav() {
           </li>
           <li>
             <details className="dropdown">
-              <summary>Account</summary>
+              <summary>
+                {auth.currentUser ? auth.currentUser.email : "Account"}
+              </summary>
               <ul dir="rtl">
                 {auth.currentUser ? (
                   <>

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
-import { collection, addDoc, onSnapshot, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 import { toggleModal } from "../Component/modal";
 
 const Manage = () => {
@@ -12,6 +18,7 @@ const Manage = () => {
   const [isExpense, setIsExpense] = useState(true);
   const [types, setTypes] = useState([]);
   const [newType, setNewType] = useState("");
+  const [budget, setBudget] = useState("");
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
@@ -87,6 +94,18 @@ const Manage = () => {
     }
   };
 
+  const saveBudget = async () => {
+    if (auth.currentUser) {
+      const userDocRef = doc(db, "users", auth.currentUser.uid);
+      await setDoc(userDocRef, { budget: parseFloat(budget) }, { merge: true });
+      setBudget(""); // Clear the budget input field after saving
+      toggleModal({
+        currentTarget: { getAttribute: () => "setBudgetModal" },
+        preventDefault: () => {},
+      });
+    }
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -101,6 +120,13 @@ const Manage = () => {
         onClick={toggleModal}
       >
         Add New Transaction
+      </button>
+      <button
+        className="contrast"
+        data-target="setBudgetModal"
+        onClick={toggleModal}
+      >
+        Set Budget
       </button>
       <dialog id="addTransactionModal">
         <article>
@@ -199,7 +225,7 @@ const Manage = () => {
 
                   addNewTransaction(amount, title, payDay, isExpense, type);
                   document.getElementById("transactionForm").reset();
-                  setIsRegular(true);
+                  setIsRegular(false);
                   setNewType("");
                   toggleModal({
                     currentTarget: {
@@ -246,6 +272,42 @@ const Manage = () => {
               </button>
               <button type="button" className="primary" onClick={addNewType}>
                 Add Type
+              </button>
+            </footer>
+          </form>
+        </article>
+      </dialog>
+
+      <dialog id="setBudgetModal">
+        <article>
+          <a
+            href="#close"
+            aria-label="Close"
+            className="close"
+            data-target="setBudgetModal"
+            onClick={toggleModal}
+          ></a>
+          <h5>Set Budget</h5>
+          <form id="budgetForm">
+            <label htmlFor="budget">Budget</label>
+            <input
+              type="number"
+              id="budget"
+              value={budget}
+              onChange={(e) => setBudget(e.target.value)}
+              required
+            />
+            <footer>
+              <button
+                type="button"
+                className="secondary"
+                data-target="setBudgetModal"
+                onClick={toggleModal}
+              >
+                Close
+              </button>
+              <button type="button" className="primary" onClick={saveBudget}>
+                Save Budget
               </button>
             </footer>
           </form>
