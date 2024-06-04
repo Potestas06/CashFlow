@@ -1,32 +1,55 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
 const Manage = () => {
   const navigate = useNavigate();
   const [userDatas, setUserDatas] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = db
+    const unsubscribeFromSnapshot = db
       .collection(auth.currentUser.uid)
       .onSnapshot((snapshot) => {
         setUserDatas(
           snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
         );
       });
-    console.log(userDatas);
-    return unsubscribe;
+
+    return () => unsubscribeFromSnapshot();
   }, []);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
       if (!user) {
         navigate("/login");
       }
     });
-    return unsubscribe;
+
+    return () => unsubscribeFromAuth();
   }, [navigate]);
+
+  const addNewTransaction = (
+    amount,
+    title,
+    payDay = null,
+    isExpense = true,
+    type = "Undefined"
+  ) => {
+    const collectionRef = db.collection(auth.currentUser.uid);
+    const transactionData = {
+      title,
+      amount,
+      isExpense,
+      type,
+      Date: new Date(),
+    };
+
+    if (payDay !== null) {
+      transactionData.payDay = payDay;
+    }
+
+    collectionRef.add(transactionData);
+  };
 
   return (
     <div className="container">
