@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc } from "firebase/firestore";
 import { toggleModal } from "../Component/modal";
 
 const Manage = () => {
   const navigate = useNavigate();
   const [userDatas, setUserDatas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isRegular, setIsRegular] = useState(false);
+  const [isRegular, setIsRegular] = useState(true); // Default to true
+  const [types, setTypes] = useState([]);
+  const [newType, setNewType] = useState("");
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
@@ -16,8 +18,12 @@ const Manage = () => {
         navigate("/login");
       } else {
         setIsLoading(false);
+        const userDocRef = doc(db, "users", user.uid);
+        const userCollectionRef = collection(userDocRef, "transactions");
+        const typesCollectionRef = collection(userDocRef, "types");
+
         const unsubscribeFromSnapshot = onSnapshot(
-          collection(db, user.uid),
+          userCollectionRef,
           (snapshot) => {
             setUserDatas(
               snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
@@ -25,7 +31,17 @@ const Manage = () => {
           }
         );
 
-        return () => unsubscribeFromSnapshot();
+        const unsubscribeFromTypesSnapshot = onSnapshot(
+          typesCollectionRef,
+          (snapshot) => {
+            setTypes(snapshot.docs.map((doc) => doc.data().name));
+          }
+        );
+
+        return () => {
+          unsubscribeFromSnapshot();
+          unsubscribeFromTypesSnapshot();
+        };
       }
     });
 
@@ -36,10 +52,11 @@ const Manage = () => {
     amount,
     title,
     payDay = null,
-    isExpense = false,
+    isExpense = true,
     type = "Undefined"
   ) => {
     if (auth.currentUser) {
+      const userDocRef = doc(db, "users", auth.currentUser.uid);
       const transactionData = {
         title,
         amount,
@@ -52,7 +69,20 @@ const Manage = () => {
         transactionData.payDay = payDay;
       }
 
-      await addDoc(collection(db, auth.currentUser.uid), transactionData);
+      await addDoc(collection(userDocRef, "transactions"), transactionData);
+    }
+  };
+
+  const addNewType = async () => {
+    if (newType && !types.includes(newType)) {
+      const userDocRef = doc(db, "users", auth.currentUser.uid);
+      await addDoc(collection(userDocRef, "types"), { name: newType });
+      setTypes([...types, newType]);
+      setNewType(""); // Clear the new type input field after adding
+      toggleModal({
+        currentTarget: { getAttribute: () => "addTypeModal" },
+        preventDefault: () => {},
+      });
     }
   };
 
@@ -110,7 +140,28 @@ const Manage = () => {
             )}
 
             <label htmlFor="type">Type</label>
-            <input type="text" id="type" checked />
+            <select
+              defaultValue="Undefined"
+              id="type"
+              onChange={(e) => {
+                if (e.target.value === "new") {
+                  toggleModal({
+                    currentTarget: { getAttribute: () => "addTypeModal" },
+                    preventDefault: () => {},
+                  });
+                }
+              }}
+            >
+              <option value="Undefined" disabled>
+                Choce the type
+              </option>
+              {types.map((type, index) => (
+                <option key={index} value={type}>
+                  {type}
+                </option>
+              ))}
+              <option value="new">Create new type</option>
+            </select>
 
             <footer>
               <button
@@ -132,11 +183,17 @@ const Manage = () => {
                     : null;
                   const isExpense =
                     document.getElementById("isExpense").checked;
-                  const type = document.getElementById("type").value;
+                  let type = document.getElementById("type").value;
+
+                  if (type === "new") {
+                    type = newType;
+                    addNewType();
+                  }
 
                   addNewTransaction(amount, title, payDay, isExpense, type);
                   document.getElementById("transactionForm").reset();
-                  setIsRegular(false); // Reset the regular transaction state
+                  setIsRegular(true); // Reset the regular transaction state
+                  setNewType(""); // Reset the new type state
                   toggleModal({
                     currentTarget: {
                       getAttribute: () => "addTransactionModal",
@@ -146,6 +203,42 @@ const Manage = () => {
                 }}
               >
                 Save changes
+              </button>
+            </footer>
+          </form>
+        </article>
+      </dialog>
+
+      <dialog id="addTypeModal">
+        <article>
+          <a
+            href="#close"
+            aria-label="Close"
+            className="close"
+            data-target="addTypeModal"
+            onClick={toggleModal}
+          ></a>
+          <h5>Add New Type</h5>
+          <form id="typeForm">
+            <label htmlFor="newType">New Type</label>
+            <input
+              type="text"
+              id="newType"
+              value={newType}
+              onChange={(e) => setNewType(e.target.value)}
+              required
+            />
+            <footer>
+              <button
+                type="button"
+                className="secondary"
+                data-target="addTypeModal"
+                onClick={toggleModal}
+              >
+                Close
+              </button>
+              <button type="button" className="primary" onClick={addNewType}>
+                Add Type
               </button>
             </footer>
           </form>

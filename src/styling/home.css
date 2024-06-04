@@ -1,0 +1,29 @@
+/* Home.css */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.centered-section {
+  text-align: center;
+}
+
+.logo-container {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.responsive-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+section {
+  margin: 20px 0;
+}
+
+h3 {
+  margin-bottom: 10px;
+}

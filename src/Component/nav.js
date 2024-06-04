@@ -5,10 +5,14 @@ import { auth } from "../firebase";
 function Nav() {
   const navigate = useNavigate();
 
-  const logout = () => {
-    auth.signOut();
-    alert("Logout successful!");
-    navigate("/Login");
+  const logout = async () => {
+    try {
+      await auth.signOut();
+      alert("Logout successful!");
+      navigate("/Login");
+    } catch (error) {
+      console.error("Error logging out: ", error);
+    }
   };
 
   return (
@@ -20,7 +24,7 @@ function Nav() {
             window.matchMedia("(prefers-color-scheme: dark)").matches ? (
               <a href="/">
                 <img
-                  src={process.env.PUBLIC_URL + "/img/logo_dark.jpg"}
+                  src={`${process.env.PUBLIC_URL}/img/logo_dark.jpg`}
                   alt="Cashflow"
                   className="logo"
                 />
@@ -28,7 +32,7 @@ function Nav() {
             ) : (
               <a href="/">
                 <img
-                  src={process.env.PUBLIC_URL + "/img/logo_light.jpg"}
+                  src={`${process.env.PUBLIC_URL}/img/logo_light.jpg`}
                   alt="Cashflow"
                   className="logo"
                 />
@@ -45,17 +49,19 @@ function Nav() {
               <summary>Account</summary>
               <ul dir="rtl">
                 {auth.currentUser ? (
-                  <li>
-                    <button onClick={logout}>Logout</button>
-                  </li>
+                  <>
+                    <li>
+                      <button onClick={logout}>Logout</button>
+                    </li>
+                    <li>
+                      <a href="/Profile">Profile</a>
+                    </li>
+                  </>
                 ) : (
                   <li>
                     <Link to="/Login">Login</Link>
                   </li>
                 )}
-                <li>
-                  <a href="/404">Profile</a>
-                </li>
               </ul>
             </details>
           </li>
