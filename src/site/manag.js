@@ -67,7 +67,7 @@ const Manage = () => {
 
       return () => unsubscribeFromBudgetSnapshot();
     }
-  });
+  }, []);
 
   const addNewTransaction = async (
     amount,
@@ -117,6 +117,30 @@ const Manage = () => {
         preventDefault: () => {},
       });
     }
+  };
+
+  const handleTransactionSave = () => {
+    const amount = document.getElementById("amount").value;
+    const title = document.getElementById("title").value;
+    const payDay = isRegular ? document.getElementById("payDay").value : null;
+    const isExpense = document.getElementById("isExpense").checked;
+    let type = document.getElementById("type").value;
+
+    if (type === "new") {
+      type = newType;
+      addNewType();
+    }
+
+    addNewTransaction(amount, title, payDay, isExpense, type);
+    document.getElementById("transactionForm").reset();
+    setIsRegular(false);
+    setNewType("");
+    toggleModal({
+      currentTarget: {
+        getAttribute: () => "addTransactionModal",
+      },
+      preventDefault: () => {},
+    });
   };
 
   if (isLoading) {
@@ -221,32 +245,7 @@ const Manage = () => {
               <button
                 type="button"
                 className="primary"
-                onClick={() => {
-                  const amount = document.getElementById("amount").value;
-                  const title = document.getElementById("title").value;
-                  const payDay = isRegular
-                    ? document.getElementById("payDay").value
-                    : null;
-                  const isExpense =
-                    document.getElementById("isExpense").checked;
-                  let type = document.getElementById("type").value;
-
-                  if (type === "new") {
-                    type = newType;
-                    addNewType();
-                  }
-
-                  addNewTransaction(amount, title, payDay, isExpense, type);
-                  document.getElementById("transactionForm").reset();
-                  setIsRegular(false);
-                  setNewType("");
-                  toggleModal({
-                    currentTarget: {
-                      getAttribute: () => "addTransactionModal",
-                    },
-                    preventDefault: () => {},
-                  });
-                }}
+                onClick={handleTransactionSave}
               >
                 Save changes
               </button>
