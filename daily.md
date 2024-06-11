@@ -45,7 +45,7 @@ Patrick arbeitet weiterhin an der Implementierung des Login-Systems. Ian ist imm
 - **Patrick:** Fortsetzung der Implementierung des Login-Systems.
 - **Ian:** Vertiefung des Wissens über die gewählte Visualisierungsbibliothek und erste Implementierungsversuche.
 
-## Daily Meeting - 28. Mai 2024
+## Daily Meeting - 4. Juni 2024
 
 **Teilnehmer:**
 - Patrick
@@ -67,4 +67,30 @@ Patrick arbeitet weiterhin an der Implementierung des Login-Systems. Ian ist imm
 **Nächste Schritte:**
 - **Patrick:** Fertigstellung der Management-Seite.
 - **Ian:** Fertigstellung der Graphen und Beginn der Arbeiten an der Übersichtseite.
+
+# Daily Meeting - 11. Juni 2024
+
+## Teilnehmer:
+- Patrick
+- Ian
+
+## Tagesordnungspunkte:
+
+1. **Patrick:**
+   - Fortsetzung der Arbeiten an der Management-Seite.
+   - Abschluss der Arbeiten an "types/Expenses/Abos".
+   - Beginn der Arbeiten an der Budgetverwaltung.
+
+2. **Ian:**
+   - Fortsetzung der Arbeiten an den Graphen.
+   - Implementierung der Graphen in die Übersichtsseite.
+
+## Zusammenfassung:
+- Patrick hat die Arbeiten an "types/Expenses/Abos" abgeschlossen und setzt seine Arbeiten an der Management-Seite fort, mit Fokus auf die Budgetverwaltung.
+- Ian arbeitet weiterhin an den Graphen und implementiert diese in die Übersichtsseite.
+
+## Nächste Schritte:
+- **Patrick:** Fertigstellung der Management-Seite und Fortschritte bei der Budgetverwaltung.
+- **Ian:** Abschluss der Implementierung der Graphen und Beginn der Arbeiten an der vollständigen Übersichtsseite.
+
 
