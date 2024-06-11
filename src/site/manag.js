@@ -56,6 +56,19 @@ const Manage = () => {
     return () => unsubscribeFromAuth();
   }, [navigate]);
 
+  useEffect(() => {
+    if (auth.currentUser) {
+      const userDocRef = doc(db, "users", auth.currentUser.uid);
+      const unsubscribeFromBudgetSnapshot = onSnapshot(userDocRef, (doc) => {
+        if (doc.exists()) {
+          setBudget(doc.data().budget);
+        }
+      });
+
+      return () => unsubscribeFromBudgetSnapshot();
+    }
+  });
+
   const addNewTransaction = async (
     amount,
     title,
