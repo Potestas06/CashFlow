@@ -1,8 +1,7 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
+import {auth} from "../firebase";
 
-function Nav() {
+function Nav({user}) {
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -47,10 +46,10 @@ function Nav() {
           <li>
             <details className="dropdown">
               <summary>
-                {auth.currentUser ? auth.currentUser.email : "Account"}
+                {user ? user.email : "Account"}
               </summary>
               <ul dir="rtl">
-                {auth.currentUser ? (
+                {user ? (
                   <>
                     <li>
                       <button onClick={logout}>Logout</button>
