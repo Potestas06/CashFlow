@@ -37,8 +37,7 @@ const ExpensesList = ({ expenses }) => {
         expense.id
       );
       await deleteDoc(expenseDocRef);
-      setModalData(null); // Reset modal data after deletion
-      // Add any additional steps needed to update state or UI
+      setModalData(null);
     }
   };
 
