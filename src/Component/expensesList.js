@@ -17,7 +17,9 @@ const ExpensesList = ({ expenses }) => {
   const [modalData, setModalData] = useState(null);
 
   const sortedExpenses = [...expenses].sort((a, b) => {
-    if (sortBy === "date") {
+    if (sortBy === "name") {
+      return a.title.localeCompare(b.title);
+    } else if (sortBy === "date") {
       return new Date(a.Date.seconds * 1000) - new Date(b.Date.seconds * 1000);
     } else if (sortBy === "type") {
       return a.type.localeCompare(b.type);
@@ -48,6 +50,7 @@ const ExpensesList = ({ expenses }) => {
         <label>
           Sort By:
           <select onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
+            <option value="name">Name</option>
             <option value="date">Date</option>
             <option value="type">Type</option>
             <option value="isOneTime">One Time Payment</option>
