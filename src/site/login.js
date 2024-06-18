@@ -1,4 +1,3 @@
-// Component/Login.js
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { auth } from "../firebase";
@@ -92,6 +91,7 @@ const Login = () => {
         onClick={toggleModal}
         style={{ display: "none" }}
         id="successfulLoginButton"
+        data-testid="successfulLoginButton"
       />
       <dialog id="successfulLogin">
         <article>
