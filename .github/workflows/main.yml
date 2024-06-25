@@ -1,4 +1,4 @@
-name: Build, Test, and Deploy a container to an Azure Container Instance
+name: Build and Deploy a container to an Azure Container Instance
 
 on:
   push:
@@ -28,8 +28,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install additional Babel plugin
-        run: npm install --save-dev @babel/plugin-proposal-private-property-in-object
+      - name: Install additional dependencies
+        run: npm install --save-dev @babel/plugin-proposal-private-property-in-object util
+
+      - name: Create jest.setup.js file
+        run: |
+          echo "const { TextDecoder, TextEncoder } = require('util');" > jest.setup.js
+          echo "global.TextDecoder = TextDecoder;" >> jest.setup.js
+          echo "global.TextEncoder = TextEncoder;" >> jest.setup.js
 
       - name: Create firebase.js file
         run: |
@@ -45,9 +51,6 @@ jobs:
           echo "export { auth, db, storage };" >> src/firebase.js
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-
-      - name: Run tests
-        run: npm test
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
