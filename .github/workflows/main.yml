@@ -28,15 +28,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install additional dependencies
-        run: npm install --save-dev @babel/plugin-proposal-private-property-in-object util
-
-      - name: Create jest.setup.js file
-        run: |
-          echo "const { TextDecoder, TextEncoder } = require('util');" > jest.setup.js
-          echo "global.TextDecoder = TextDecoder;" >> jest.setup.js
-          echo "global.TextEncoder = TextEncoder;" >> jest.setup.js
-
       - name: Create firebase.js file
         run: |
           echo "import { initializeApp } from 'firebase/app';" > src/firebase.js
@@ -76,12 +67,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Register ContainerInstance Provider
-        run: |
-          az provider register --namespace Microsoft.ContainerInstance
-          az provider show --namespace Microsoft.ContainerInstance --query "registrationState"
-
+          
       - name: Deploy to Azure Container Instance
         uses: azure/aci-deploy@v1
         with:
@@ -91,5 +77,5 @@ jobs:
           registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          name: myapp
+          name: cashflow
           location: 'westus'
