@@ -93,4 +93,27 @@ Patrick arbeitet weiterhin an der Implementierung des Login-Systems. Ian ist imm
 - **Patrick:** Fertigstellung der Management-Seite und Fortschritte bei der Budgetverwaltung.
 - **Ian:** Abschluss der Implementierung der Graphen und Beginn der Arbeiten an der vollständigen Übersichtsseite.
 
+## Daily Meeting - 25. Juni 2024
+
+**Teilnehmer:**
+- Patrick
+- Ian
+
+**Tagesordnungspunkte:**
+
+**Patrick:**
+- Abschluss der Arbeiten an der Budgetverwaltung.
+- Vorbereitung des Deployments der Seite auf Azure.
+
+**Ian:**
+- Abschluss der Implementierung der Graphen.
+- Beginn der Arbeiten an der vollständigen Übersichtsseite.
+
+**Zusammenfassung:**
+- Patrick hat die Budgetverwaltung fertiggestellt und bereitet das Deployment der Seite auf Azure vor.
+- Ian hat die Graphen implementiert und startet nun mit der Entwicklung der vollständigen Übersichtsseite.
+
+**Nächste Schritte:**
+- **Patrick:** Durchführung des Azure Deployments.
+- **Ian:** Fortsetzung der Arbeiten an der vollständigen Übersichtsseite.
 
