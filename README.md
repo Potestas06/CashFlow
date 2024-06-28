@@ -1,4 +1,6 @@
-# CashFlow
+
+![image](https://github.com/Potestas06/CashFlow/assets/94400853/f0aecaa0-8098-4c57-b178-31d7ee3d3031)
+
 A project for managing your expenses
 
 ## Project Overview:
