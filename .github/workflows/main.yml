@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  IMAGE_NAME: reCashflow.azurecr.io/cashflow:${{ github.sha }}
+  IMAGE_NAME: reCashflow.azurecr.io/cashflow:latest
 
 jobs:
   build:
