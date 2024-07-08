@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { addDoc, collection, doc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { toggleModal } from "../Component/modal";
@@ -7,7 +7,6 @@ const TransactionForm = ({
   types,
   newType,
   setNewType,
-  setTypes,
   isRegular,
   setIsRegular,
   isExpense,

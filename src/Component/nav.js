@@ -41,6 +41,9 @@ function Nav({user}) {
         </ul>
         <ul>
           <li>
+            <Link to="/Dashboard">Dashboard</Link>
+          </li>
+          <li>
             <Link to="/Manage">Manage</Link>
           </li>
           <li>
@@ -50,26 +53,26 @@ function Nav({user}) {
               </summary>
               <ul dir="rtl">
                 {user ? (
-                  <>
-                    <li>
-                      <button onClick={logout}>Logout</button>
-                    </li>
-                    <li>
-                      <a href="/Profile">Profile</a>
-                    </li>
-                  </>
+                    <>
+                      <li>
+                        <button onClick={logout}>Logout</button>
+                      </li>
+                      <li>
+                        <a href="/Profile">Profile</a>
+                      </li>
+                    </>
                 ) : (
-                  <li>
-                    <Link to="/Login">Login</Link>
-                  </li>
+                    <li>
+                      <Link to="/Login">Login</Link>
+                    </li>
                 )}
               </ul>
             </details>
           </li>
         </ul>
       </nav>
-      <br />
-      <br />
+      <br/>
+      <br/>
     </div>
   );
 }

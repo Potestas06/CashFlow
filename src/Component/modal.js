@@ -25,9 +25,7 @@ const toggleModal = (event) => {
 
 // Is modal open
 const isModalOpen = (modal) => {
-  return modal.hasAttribute("open") && modal.getAttribute("open") != "false"
-    ? true
-    : false;
+  return modal.hasAttribute("open") && modal.getAttribute("open");
 };
 
 // Open modal

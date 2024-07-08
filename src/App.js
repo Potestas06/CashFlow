@@ -8,12 +8,13 @@ import Register from "./site/register";
 import Manage from "./site/manag";
 import { useEffect, useState } from "react";
 import { auth } from "./firebase";
+import Dashboard from "./site/dashboard";
 
 function App() {
   let [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       setUser(auth.currentUser);
     });
   });
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/manage" element={<Manage />} />
+          <Route path="/dashboard" element={<Dashboard user={user} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
