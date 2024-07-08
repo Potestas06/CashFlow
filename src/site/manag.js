@@ -5,7 +5,7 @@ import { collection, onSnapshot, doc, addDoc } from "firebase/firestore";
 import TransactionForm from "../Component/transactionForm";
 import TypeForm from "../Component/typeForm";
 import BudgetForm from "../Component/budgetForm";
-import ExpensesList from "../Component/expensesList";
+import ExpensesTable from "../Component/expensesTable";
 import { toggleModal } from "../Component/modal";
 
 const Manage = () => {
@@ -124,7 +124,7 @@ const Manage = () => {
         setTypes={setTypes}
       />
       <BudgetForm budget={budget} setBudget={setBudget} />
-      <ExpensesList expenses={userDatas} />
+      <ExpensesTable expenses={userDatas} />
     </div>
   );
 };
