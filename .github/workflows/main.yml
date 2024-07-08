@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Build the application
+        run: npm run build
+
       - name: Create firebase.js file
         run: |
           echo "import { initializeApp } from 'firebase/app';" > src/firebase.js
@@ -79,3 +82,9 @@ jobs:
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           name: cashflow
           location: 'westus'
+          ports: |
+            80
+            443
+          environment-variables: |
+            NODE_ENV=production
+          command: '["serve", "-s", "build", "-l", "80"]'
