@@ -77,21 +77,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Create firebase.js file
-        run: |
-          echo "import { initializeApp } from 'firebase/app';" > src/firebase.js
-          echo "import { getAuth } from 'firebase/auth';" >> src/firebase.js
-          echo "import { getFirestore } from 'firebase/firestore';" >> src/firebase.js
-          echo "import { getStorage } from 'firebase/storage';" >> src/firebase.js
-          echo "const firebaseConfig = ${FIREBASE_CONFIG};" >> src/firebase.js
-          echo "const app = initializeApp(firebaseConfig);" >> src/firebase.js
-          echo "const auth = getAuth(app);" >> src/firebase.js
-          echo "const db = getFirestore(app);" >> src/firebase.js
-          echo "const storage = getStorage(app);" >> src/firebase.js
-          echo "export { auth, db, storage };" >> src/firebase.js
-        env:
-          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-
       - name: Run unit tests
         run: npm test
 
