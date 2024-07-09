@@ -29,7 +29,6 @@ const Register = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert("Registration successful!");
-      await signInWithEmailAndPassword(auth, email, password);
       Navigate("/");
     } catch (error) {
       setError(error.message);
