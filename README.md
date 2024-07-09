@@ -116,6 +116,19 @@ https://github.com/Potestas06/CashFlow/blob/main/daily.md
 
 ## Reflection
 
+
+Bewertung 426| Patrick  | Ian 
+-------- | -------- | --------
+100.1 Zusammenarbeit und Anwendung von Scrum | 8 | 8 
+100.2 Führung des Scrum- bzw. Kanban-Boards  | 8 |7 
+100.3 Qualität der Führung der Repository Einträge | 9 | 8
+100.4 Arbeit mit Branches bzw. GitFlow im Team  | 9 | 10
+100.5 Testkonzept und Testfälle | 8 | 8
+100.6 Zusammenarbeit in der Gruppe, Dokumentation | 10 |10
+Gesamt|52 |53 
+
+
+
 Patrick:
 During the project, I completed the Home Page and developed the Login System. I then focused on the Management Page and finalized the Budget management system. These tasks enhanced my skills in frontend development, user authentication, and financial data management. Collaborating with Ian was effective, and we maintained clear communication and mutual support, which facilitated our progress. Preparing the deployment on Azure provided valuable experience with cloud services and CI/CD pipelines. Overall, this project was a significant learning opportunity in both technical and collaborative aspects.
 
