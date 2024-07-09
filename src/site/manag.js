@@ -7,6 +7,7 @@ import TypeForm from "../Component/typeForm";
 import BudgetForm from "../Component/budgetForm";
 import ExpensesTable from "../Component/expensesTable";
 import { toggleModal } from "../Component/modal";
+import { processRecurringTransactions } from "../Component/processRecurringTransactions";
 
 const Manage = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Manage = () => {
   const [budget, setBudget] = useState("");
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       if (!user) {
         navigate("/login");
       } else {
@@ -27,6 +28,9 @@ const Manage = () => {
         const userDocRef = doc(db, "users", user.uid);
         const userCollectionRef = collection(userDocRef, "transactions");
         const typesCollectionRef = collection(userDocRef, "types");
+
+        // Process recurring transactions
+        await processRecurringTransactions();
 
         const unsubscribeFromSnapshot = onSnapshot(
           userCollectionRef,
