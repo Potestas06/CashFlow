@@ -4,6 +4,7 @@ import './dashboard.css';
 import {db} from "../firebase";
 import {collection, doc, getDocs, getDoc, query, orderBy} from "firebase/firestore";
 import {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 function formatDate(date) {
     const month = date.getMonth() + 1; // Months are zero-indexed, so add 1
@@ -90,12 +91,14 @@ function lineChartData(user, newUserData, setPayments, setPrivateHoldings) {
 }
 
 export function Dashboard({user}) {
+    const navigate = useNavigate();
     const [payment, setPayment] = useState([]);
     const [privateHoldings, setPrivateHoldings] = useState([]);
     const [userData, setUserData] = useState([]);
 
     useEffect(() => {
         if (!user) {
+            navigate("/login");
             return;
         }
 
