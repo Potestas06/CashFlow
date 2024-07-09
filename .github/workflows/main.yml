@@ -43,6 +43,9 @@ jobs:
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
 
+      - name: List directory structure
+        run: ls -R
+
       - name: Run unit tests
         run: npm test
 
