@@ -2,6 +2,7 @@ import React from "react";
 import { addDoc, collection, doc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { toggleModal } from "../Component/modal";
+import { v4 as uuidv4 } from "uuid";
 
 const TransactionForm = ({
   types,
@@ -28,17 +29,21 @@ const TransactionForm = ({
           amount,
           isExpense,
           type,
-          Date: new Date(),
+          date: new Date(),
+          creationDate: new Date(),
         };
 
         if (payDay !== null) {
           transactionData.payDay = payDay;
+          transactionData.recurrence = "monthly";
+          transactionData.paymentId = uuidv4();
         }
 
         await addDoc(collection(userDocRef, "transactions"), transactionData);
       }
     } catch (error) {
       console.error("Error adding new transaction: ", error);
+      alert("Failed to add transaction. Please try again.");
     }
   };
 
