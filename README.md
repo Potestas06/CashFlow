@@ -44,8 +44,6 @@ The scope of testing will cover the following components:
 ### Test Plan
 - **Unit Testing**: Test individual functions and modules for expected outcomes.
 - **Integration Testing**: Ensure modules work together seamlessly, particularly user authentication with dashboard data.
-- **System Testing**: Conduct end-to-end testing of the complete system to validate overall functionality.
-- **User Acceptance Testing (UAT)**: Engage real users to test the application in real-world scenarios to ensure it meets their needs and expectations.
 
 ### Test Cases
 **User Authentication**
