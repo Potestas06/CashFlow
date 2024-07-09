@@ -29,7 +29,7 @@ async function getUserBudget(user){
 async function getUserTransactions(user) {
     const userDocRef = doc(db, "users", user.uid);
     const transactionCollection = collection(userDocRef, 'transactions')
-    const transactionsQuery = query(transactionCollection, orderBy("Date", 'asc'));
+    const transactionsQuery = query(transactionCollection, orderBy("date", 'asc'));
 
     let transactionDocs = (await getDocs(transactionsQuery)).docs;
     return transactionDocs.map(doc => doc.data())
@@ -48,8 +48,8 @@ function lineChartData(user, newUserData, setPayments, setPrivateHoldings) {
         let privateHoldingsMonths = new Map();
 
         newUserData.forEach(transaction => {
-            console.log(transaction.Date.seconds);
-            let date = new Date(transaction.Date.seconds*1000)
+            console.log(transaction.date.seconds);
+            let date = new Date(transaction.date.seconds*1000)
             console.log(date);
 
             let formatted = formatDate(date)
