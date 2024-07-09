@@ -117,3 +117,28 @@ Patrick arbeitet weiterhin an der Implementierung des Login-Systems. Ian ist imm
 - **Patrick:** Durchführung des Azure Deployments.
 - **Ian:** Fortsetzung der Arbeiten an der vollständigen Übersichtsseite.
 
+## Daily Meeting - 2. Juli 2024
+
+**Teilnehmer:**
+- Patrick
+- Ian
+
+**Tagesordnungspunkte:**
+
+**Patrick:**
+- Abschluss des Deployments auf Azure.
+- Beginn der Arbeiten an der Dokumentation.
+
+**Ian:**
+- Abschluss der Arbeiten an der vollständigen Übersichtsseite.
+- Beginn der Arbeiten an der Dokumentation.
+
+**Zusammenfassung:**
+- Patrick hat das Deployment auf Azure erfolgreich abgeschlossen und arbeitet nun an der Dokumentation.
+- Ian hat die Arbeiten an der vollständigen Übersichtsseite abgeschlossen und widmet sich ebenfalls der Dokumentation.
+
+**Nächste Schritte:**
+- **Patrick:** Fortsetzung und Fertigstellung der Dokumentation
+- **Ian:** Fortsetzung und Fertigstellung der Dokumentation
+
+
