@@ -40,7 +40,6 @@ The scope of testing will cover the following components:
 - **Dashboard Functionality**: Verify the accuracy and clarity of financial summaries.
 - **Income and Expense Management**: Test adding, editing, categorizing, and deleting income and expenses.
 - **Budgeting Tools**: Check the setting, updating, and monitoring of budgets.
-- **Analytical Tools**: Validate the correctness and usefulness of financial analysis and trends.
 
 ### Test Plan
 - **Unit Testing**: Test individual functions and modules for expected outcomes.
