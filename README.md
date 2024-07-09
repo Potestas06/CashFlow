@@ -65,14 +65,12 @@ The scope of testing will cover the following components:
 - Verify the correct reflection of changes in the dashboard and analysis tools.
 
 **Budgeting Tools**
-- Set up new budgets and validate against income and expenses.
-- Update and monitor budgets over time.
-- Test notifications for budget limits.
+- Set up new budgets and validate
 
-**Analytical Tools**
-- Generate financial reports and trend analyses.
-- Validate the accuracy of analytical data.
-- Ensure usability and clarity of the reports generated.
+**Routing**
+- enter a wrong page ```cashflowURL.com/ifjnewrhgv``` and check if u get redirected to the 404 page
+
+
 
 ###  Tools and Environment
 - **Testing Frameworks**: Jest for unit testing, Selenium for UI testing.
@@ -93,6 +91,7 @@ The submitted code adheres to Clean Code principles, ensuring:
 
 ## Deployment
 
+https://github.com/Potestas06/CashFlow/blob/main/Deployment_Doku.md
 The deployment process is automated using GitHub Actions. Key steps include:
 - **Docker**: A Docker image is automatically built from the codebase.
 - **GitHub Actions**: The CI/CD pipeline is configured using GitHub Actions.
