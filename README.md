@@ -109,6 +109,10 @@ The deployment process is automated using GitHub Actions. Key steps include:
 
 The app is published on azure
 
+## Daily
+
+https://github.com/Potestas06/CashFlow/blob/main/daily.md
+
 
 ## Reflection
 
