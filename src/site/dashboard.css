@@ -1,0 +1,10 @@
+.lineCharts {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.chart {
+    margin: 2px;
+}

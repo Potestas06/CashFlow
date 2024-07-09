@@ -1,8 +1,8 @@
-// Component/Login.js
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { toggleModal } from "../Component/modal";
 
 const Login = () => {
   const mainRef = useRef();
@@ -27,8 +27,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Login successful!");
-      navigate("/");
+      document.getElementById("successfulLoginButton").click();
     } catch (error) {
       setError(error.message);
     }
@@ -39,9 +38,11 @@ const Login = () => {
       ref={mainRef}
       style={{
         minHeight: "100vh",
-        maxWidth: "map.get(map.get($breakpoints, 'sm'), 'viewport')",
+        display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        alignItems: "center",
+        padding: "1rem",
       }}
       className="container"
     >
@@ -52,7 +53,7 @@ const Login = () => {
           name="email"
           placeholder="Email"
           aria-label="Email"
-          autocomplete="email"
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -84,6 +85,31 @@ const Login = () => {
       <p>
         Don't have an account? <Link to="/register">Register here</Link>
       </p>
+
+      <button
+        data-target="successfulLogin"
+        onClick={toggleModal}
+        style={{ display: "none" }}
+        id="successfulLoginButton"
+        data-testid="successfulLoginButton"
+      />
+      <dialog id="successfulLogin">
+        <article>
+          <h5>Login successful!</h5>
+          <p>You are now logged in.</p>
+          <button
+            type="button"
+            className="secondary"
+            data-target="successfulLogin"
+            onClick={(e) => {
+              toggleModal(e);
+              navigate("/");
+            }}
+          >
+            Close
+          </button>
+        </article>
+      </dialog>
     </main>
   );
 };
