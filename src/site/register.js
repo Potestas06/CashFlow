@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 import { auth } from "../firebase";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { Navigate } from "react-router-dom";
 
